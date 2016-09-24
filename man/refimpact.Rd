@@ -8,10 +8,10 @@
 \description{
 This package provides wrapper functions around the UK Research Excellence
 Framework 2014 Impact Case Studies Database API
-(\link{http://impact.ref.ac.uk/}). The database contains relevant publication
+(\url{http://impact.ref.ac.uk/}). The database contains relevant publication
 and research metadata about each case study as well as several paragraphs of
 text from the case study submissions. Case studies in the database are
 licenced under a CC-BY 4.0 licence
-(\link{http://creativecommons.org/licenses/by/4.0/legalcode}).
+(\url{http://creativecommons.org/licenses/by/4.0/legalcode}).
 }
 
