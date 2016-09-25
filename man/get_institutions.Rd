@@ -15,7 +15,7 @@ and returns a list of institutions and associated metadata, including the
 UKPRN.
 }
 \examples{
-\donttest{
+\dontrun{
 get_institutions()
 }
 

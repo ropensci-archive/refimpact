@@ -22,7 +22,7 @@
 #' @return Returns a data_frame (from the \code{tibble} package).
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' studies <- get_case_studies(ID = c(27,29))
 #' studies
 #' studies[1,"Continent"] # [] gives list element

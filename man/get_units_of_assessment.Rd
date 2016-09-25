@@ -14,7 +14,7 @@ This function uses the \code{ListUnitsOfAssessment} method from the database
 API and returns a list of Units of Assessment and associated metadata.
 }
 \examples{
-\donttest{
+\dontrun{
 get_units_of_assessment()
 }
 

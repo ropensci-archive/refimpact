@@ -6,7 +6,7 @@
 #' @return Returns a data_frame (from the \code{tibble} package).
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' get_units_of_assessment()
 #' }
 #'

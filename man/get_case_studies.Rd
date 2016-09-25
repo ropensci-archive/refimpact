@@ -37,7 +37,7 @@ deals nicely with the nested data structures provided by the API. See the
 example code below for a demonstration of this behaviour.
 }
 \examples{
-\donttest{
+\dontrun{
 studies <- get_case_studies(ID = c(27,29))
 studies
 studies[1,"Continent"] # [] gives list element

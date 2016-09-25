@@ -14,7 +14,7 @@ This function uses the \code{ListTagTypes} method from the database
 API and returns a list of Tag Types and associated metadata.
 }
 \examples{
-\donttest{
+\dontrun{
 get_tag_types()
 }
 

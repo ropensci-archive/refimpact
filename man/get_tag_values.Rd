@@ -18,7 +18,7 @@ This function uses the \code{ListTagValues} method from the database API and
 returns a list of Tag Values for the supplied tag type.
 }
 \examples{
-\donttest{
+\dontrun{
 get_tag_values(3) # Tag Type 3 (Subject)
 }
 

@@ -9,7 +9,7 @@
 #' @return Returns a data_frame (from the \code{tibble} package).
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' get_tag_values(3) # Tag Type 3 (Subject)
 #' }
 #'
