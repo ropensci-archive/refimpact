@@ -104,7 +104,9 @@ ex2 <- get_case_studies(ID = c(941, 942, 1014))
 ```
 
 There is currently no way to download all of the data from the API in a single
-API call. The most efficient way to collect
+API call. The most efficient way to collect all of the data is to iterate
+through the list of all Units of Assessment (from `get_units_of_assessment()`) 
+and calling `get_case_studies()` for each value.
 
 ## More Information
 

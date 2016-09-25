@@ -1,6 +1,6 @@
 Package: refimpact
 Title: API wrapper for the UK REF 2014 Impact Case Studies Database
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: person("Perry", "Stephenson", email = "perry.stephenson@gmail.com",
     role = c("aut", "cre"))
 Description: This package provides wrapper functions around the UK Research
