@@ -32,9 +32,7 @@ user-friendly version of the license can be be obtained
 ### Github
 
 ``` r
-if (packageVersion("devtools") < 1.6) {
-  install.packages("devtools")
-}
+install.packages("devtools")
 devtools::install_github("perrystephenson/refimpact")
 ```
 
