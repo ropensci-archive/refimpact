@@ -8,6 +8,8 @@
 #' licenced under a CC-BY 4.0 licence
 #' (\url{http://creativecommons.org/licenses/by/4.0/legalcode}).
 #'
+#' To get started, see \code{\link{get_case_studies}}
+#'
 #' @docType package
 #' @name refimpact
 NULL
