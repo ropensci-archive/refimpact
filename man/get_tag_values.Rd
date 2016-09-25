@@ -6,12 +6,16 @@
 \usage{
 get_tag_values(tag_type)
 }
+\arguments{
+\item{tag_type}{numeric, a valid tag type ID. Use \code{get_tag_types()} to find valid
+tag types.}
+}
 \value{
 Returns a data_frame (from the \code{tibble} package).
 }
 \description{
-This function uses the \code{ListTagValues} method from the database
-API and returns a list of Tag Values for the supplied tag type.
+This function uses the \code{ListTagValues} method from the database API and
+returns a list of Tag Values for the supplied tag type.
 }
 \examples{
 \donttest{
