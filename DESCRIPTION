@@ -15,7 +15,7 @@ BugReports: https://github.com/perrystephenson/refimpact/issues
 Encoding: UTF-8
 LazyData: true
 Depends:
-    R (>= 3.3.0)
+    R (>= 3.2.5)
 Imports:
     assertthat (>= 0.1),
     curl (>= 2.1),
