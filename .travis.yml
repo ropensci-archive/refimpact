@@ -5,4 +5,5 @@ sudo: false
 cache: packages
 warnings_are_errors: true
 
-
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
