@@ -18,7 +18,6 @@ LazyData: true
 Depends:
     R (>= 3.2.5)
 Imports:
-    assertthat (>= 0.1),
     curl (>= 2.1),
     jsonlite (>= 1.1),
     tibble (>= 1.2)
