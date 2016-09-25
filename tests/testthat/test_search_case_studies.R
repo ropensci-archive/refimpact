@@ -1,5 +1,5 @@
 library(refimpact)
-context("Search Case Studies")
+context("Testing get_case_studies")
 
 skip_on_cran()
 

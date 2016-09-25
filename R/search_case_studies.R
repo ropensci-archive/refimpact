@@ -1,12 +1,12 @@
 #' Search and download case studies
 #'
-#' This function uses \code{SearchCaseStudies} method from the database API. The
-#' method requires at least one filtering parameter, which means you need to
+#' This function uses the \code{SearchCaseStudies} method from the database API.
+#' The method requires at least one filtering parameter, which means you need to
 #' provide at least one argument to this function.
 #'
 #' This function returns a data_frame (from the \code{tibble} package) as it
-#'   deals nicely with the nested data structures provided by the API. See the
-#'   example code below for a demonstration of this behaviour.
+#' deals nicely with the nested data structures provided by the API. See the
+#' example code below for a demonstration of this behaviour.
 #'
 #' @param ID integer, can return multiple case studies if provided as a numeric
 #'   vector. If this argument is provided then all other arguments will be

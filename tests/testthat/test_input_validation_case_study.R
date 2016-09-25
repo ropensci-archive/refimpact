@@ -1,5 +1,5 @@
 library(refimpact)
-context("Search Case Studies - Input Validation")
+context("Testing get_case_studies - Input Validation")
 
 test_that("When get_case_studies() is called without arguments, an error is returned", {
   expect_error(check_inputs_get_case_studies())

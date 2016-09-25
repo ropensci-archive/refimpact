@@ -5,5 +5,13 @@ sudo: false
 cache: packages
 warnings_are_errors: true
 
+r:
+  - oldrel
+  - release
+  - devel
+
+r_packages:
+  - covr
+
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - Rscript -e 'covr::codecov()'
