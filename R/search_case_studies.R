@@ -25,8 +25,8 @@
 #' \donttest{
 #' studies <- get_case_studies(ID = c(27,29))
 #' studies
-#' studies[1,"Continent] # [] gives list element
-#' studies[[1,"Continent]] # [[]] gives contents
+#' studies[1,"Continent"] # [] gives list element
+#' studies[[1,"Continent"]] # [[]] gives contents
 #' }
 #'
 #'

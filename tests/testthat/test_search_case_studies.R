@@ -2,6 +2,7 @@ library(refimpact)
 context("Search Case Studies")
 
 skip_on_cran()
+skip_on_travis()
 
 test_that("Function returns sensible data frames for sensible queries", {
   expect_equal(dim(get_case_studies(ID=56)),c(1,19))
