@@ -1,3 +1,10 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Correctly used the LICENSE file 
+
+* Used angle brackets around URLs in the DESCRIPTION file
+  
 ## Test environments
 
 * local OS X install, R 3.3.1
