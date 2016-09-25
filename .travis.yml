@@ -5,5 +5,8 @@ sudo: false
 cache: packages
 warnings_are_errors: true
 
+r_packages:
+  - covr
+
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - Rscript -e 'library(covr); codecov()'
