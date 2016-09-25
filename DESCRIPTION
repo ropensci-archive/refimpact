@@ -3,14 +3,13 @@ Title: API wrapper for the UK REF 2014 Impact Case Studies Database
 Version: 0.0.0.9000
 Authors@R: person("Perry", "Stephenson", email = "perry.stephenson@gmail.com",
     role = c("aut", "cre"))
-Description:
-    This package provides wrapper functions around the UK Research Excellence
-    Framework 2014 Impact Case Studies Database API (http://impact.ref.ac.uk/).
-    The database contains relevant publication and research metadata about each
-    case study as well as several paragraphs of text from the case study
-    submissions. Case studies in the database are licenced under a CC-BY 4.0
-    licence (http://creativecommons.org/licenses/by/4.0/legalcode).
-License: file LICENCE
+Description: This package provides wrapper functions around the UK Research
+    Excellence Framework 2014 Impact Case Studies Database API (http://
+    impact.ref.ac.uk/). The database contains relevant publication and research
+    metadata about each case study as well as several paragraphs of text from the
+    case study submissions. Case studies in the database are licenced under a CC-BY
+    4.0 licence (http://creativecommons.org/licenses/by/4.0/legalcode).
+License: file LICENSE
 URL: https://github.com/perrystephenson/refimpact
 BugReports: https://github.com/perrystephenson/refimpact/issues
 Encoding: UTF-8
@@ -18,4 +17,9 @@ LazyData: true
 Depends:
     R (>= 3.3.0)
 Imports:
-
+    assertthat (>= 0.1),
+    curl (>= 2.1),
+    jsonlite (>= 1.1),
+    tibble (>= 1.2)
+RoxygenNote: 5.0.1
+Suggests: testthat
