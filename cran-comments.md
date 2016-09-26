@@ -2,8 +2,8 @@
 
 This is a resubmission. In this version I have:
 
+* Fixed a typographical error
 * Correctly used the LICENSE file 
-
 * Used angle brackets around URLs in the DESCRIPTION file
   
 ## Test environments
