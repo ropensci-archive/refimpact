@@ -5,13 +5,14 @@ This is a resubmission. In this version I have:
 * Fixed a typographical error
 * Correctly used the LICENSE file 
 * Used angle brackets around URLs in the DESCRIPTION file
+* Run additional Windows tests
   
 ## Test environments
 
 * local OS X install, R 3.3.1
-* ubuntu 12.04 (on travis-ci), R 3.3.1, R 3.2.5, R-devel.
-* windows (on AppVeyor), R 3.3.1, R 3.2.5
-* win-builder (release)
+* Ubuntu 12.04 (on travis-ci), R 3.3.1, R 3.2.5, R-devel.
+* Windows (on AppVeyor), R 3.3.1, R 3.2.5, R-devel
+* win-builder (devel, release)
 
 ## R CMD check results
 
