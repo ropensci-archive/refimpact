@@ -4,6 +4,7 @@
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/perrystephenson/refimpact?branch=master&svg=true)](https://ci.appveyor.com/project/perrystephenson/refimpact)
 [![codecov](https://codecov.io/gh/perrystephenson/refimpact/branch/master/graph/badge.svg)](https://codecov.io/gh/perrystephenson/refimpact)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/refimpact)](https://CRAN.R-project.org/package=refimpact)
+[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/refimpact)](http://cran.rstudio.com/web/packages/refimpact/index.html)
 
 **refimpact** provides an API wrapper for the UK Research Excellence Framework
 2014 Impact Case Studies Database. You can find more information about this
@@ -24,13 +25,13 @@ user-friendly version of the license can be be obtained
 
 ## Installation
 
-### CRAN (not yet published)
+### Install from CRAN
 
 ``` r
-# install.packages("refimpact")
+install.packages("refimpact")
 ```
 
-### Github
+### Install from Github
 
 ``` r
 install.packages("devtools")
