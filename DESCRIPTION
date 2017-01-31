@@ -19,6 +19,7 @@ LazyData: true
 Depends:
     R (>= 3.2.5)
 Imports:
+    checkmate (>= 1.8.2),
     curl (>= 2.1),
     httr (>= 1.2.1),
     jsonlite (>= 1.1),
