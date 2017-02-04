@@ -7,25 +7,42 @@
 ref_get(api_method, tag_type = NULL, query = NULL)
 }
 \arguments{
-\item{api_method}{text string specifying the API method you wish to call.}
+\item{api_method}{text, the API method you wish to call. Valid methods
+are summarised below, and documented on the REF Impact Case Studies website
+linked above.}
 
-\item{tag_type}{integer, the ID of the tag type you wish to retrieve (see
-below)}
+\item{tag_type}{integer, for ListTagValues method only. This is the ID of the
+tag type you wish to retrieve. See example usage below.}
 
-\item{query}{list, search parameters for use with the case_studies method
-(see below)}
+\item{query}{list, search parameters for use with the SearchCaseStudies
+method. See example usage below.}
 }
 \value{
-Returns a tibble (from the \code{tibble} package).
+Returns a \code{\link[tibble]{tibble}}.
 }
 \description{
-This function calls the REF Impact Case Studies API.
+This function calls the REF Impact Case Studies API, and returns the data
+as R objects.
+}
+\details{
+Details about the API can be found at
+\url{http://impact.ref.ac.uk/CaseStudies/APIhelp.aspx}.
+}
+\section{Valid API methods}{
+
+\itemize{
+  \item ListInstitutions
+  \item ListTagTypes
+  \item ListTagValues
+  \item ListUnitsOfAssessment
+  \item SearchCaseStudies
+}
 }
 \examples{
-institutions <- ref_get("institutions")
-units_of_assessment <- ref_get("uoa")
-tag_types <- ref_get("tag_types")
-tag_type_5 <- ref_get("tag_values", 5L)
+institutions <- ref_get("ListInstitutions")
+units_of_assessment <- ref_get("ListUnitsOfAssessment")
+tag_types <- ref_get("ListTagTypes")
+tag_type_5 <- ref_get("ListTagValues", 5L)
 
 }
 

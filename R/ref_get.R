@@ -1,59 +1,93 @@
 #' Call the REF Impact Case Studies API
 #'
-#' This function calls the REF Impact Case Studies API.
+#' This function calls the REF Impact Case Studies API, and returns the data
+#' as R objects.
 #'
-#' @param api_method text string specifying the API method you wish to call.
-#' @param tag_type integer, the ID of the tag type you wish to retrieve (see
-#'   below)
-#' @param query list, search parameters for use with the case_studies method
-#'   (see below)
+#' Details about the API can be found at
+#' \url{http://impact.ref.ac.uk/CaseStudies/APIhelp.aspx}.
 #'
-#' @return Returns a tibble (from the \code{tibble} package).
+#' @param api_method text, the API method you wish to call. Valid methods
+#'   are summarised below, and documented on the REF Impact Case Studies website
+#'   linked above.
+#' @param tag_type integer, for ListTagValues method only. This is the ID of the
+#' tag type you wish to retrieve. See example usage below.
+#' @param query list, search parameters for use with the SearchCaseStudies
+#' method. See example usage below.
+#'
+#' @section Valid API methods:
+#' \itemize{
+#'   \item ListInstitutions
+#'   \item ListTagTypes
+#'   \item ListTagValues
+#'   \item ListUnitsOfAssessment
+#'   \item SearchCaseStudies
+#' }
+#'
+#' @return Returns a \code{\link[tibble]{tibble}}.
 #'
 #' @examples
-#' institutions <- ref_get("institutions")
-#' units_of_assessment <- ref_get("uoa")
-#' tag_types <- ref_get("tag_types")
-#' tag_type_5 <- ref_get("tag_values", 5L)
+#' institutions <- ref_get("ListInstitutions")
+#' units_of_assessment <- ref_get("ListUnitsOfAssessment")
+#' tag_types <- ref_get("ListTagTypes")
+#' tag_type_5 <- ref_get("ListTagValues", 5L)
 #'
 #' @export
 ref_get <- function(api_method, tag_type = NULL, query = NULL) {
 
+  # Set the user agent string so that the API maintainers can group all
+  # package users together if they ever look at the logs
   ua <- httr::user_agent("http://github.com/perrystephenson/refimpact")
 
-  api_method <- switch(api_method,
-                       institutions = "ListInstitutions",
-                       tag_types    = "ListTagTypes",
-                       tag_values   = "ListTagValues/",
-                       uoa          = "ListUnitsOfAssessment",
-                       case_studies = "SearchCaseStudies")
-
-  if(!is.null(tag_type)) {
-    if (!checkmate::check_integerish(tag_type)) {
-      stop("tag_type needs to be an integer.")
-    }
-    api_method <- paste0(api_method, tag_type)
+  # Check that the API method is one of the known (and supported) methods
+  if (!(api_method %in% c("ListInstitutions",
+                        "ListTagTypes",
+                        "ListTagValues",
+                        "ListUnitsOfAssessment",
+                        "SearchCaseStudies"))) {
+    stop("ref_get: api_method is not a recognised method for this API. See `?ref_get` for valid API methods.")
   }
 
+  # The ListTagValues method requires tag_type to be appended to the end of the
+  # URL. Check logic for this is in the input_validation.R file, and if it is
+  # all good then we can append the tag_type to the api_method string.
+  ListTagValues_validate(api_method, tag_type)
+  if (!is.null(tag_type)) {
+    api_method <- paste0(api_method, "/", as.integer(tag_type))
+  }
+
+  if (api_method == "SearchCaseStudies") {
+    query <- SearchCaseStudies_prepare(query)
+  } else {
+    if (!checkmate::test_null(query)) {
+      stop("ref_get: The query argument should only be used with the SearchCaseStudy method.")
+    }
+  }
+
+  # Build the URL using httr
   api_url <-
     httr::build_url(structure(list(
       scheme   = "http",
       hostname = "impact.ref.ac.uk",
-      path     = paste0("casestudiesapi/REFAPI.svc/", api_method)
+      path     = paste0("casestudiesapi/REFAPI.svc/", api_method),
+      query    = query
     ), class = "url"))
 
+  # Call the API and store the response
   r <- httr::GET(api_url, ua)
 
+  # Check that we got a JSON back
   if (httr::http_type(r) != "application/json") {
-    stop("API did not return json", call. = FALSE)
+    stop("ref_get: API did not return json.", call. = FALSE)
   }
 
+  # Parse the JSON response
   parsed <- jsonlite::fromJSON(httr::content(r, as = "text"))
 
+  # If there was a HTTP error, throw an R error with debug info
   if (httr::http_error(r)) {
     stop(
       sprintf(
-        "API request failed [%s]\n<%s>",
+        "ref_get: API request failed [%s]\n<%s>",
         httr::status_code(r),
         parsed
       ),
@@ -61,5 +95,6 @@ ref_get <- function(api_method, tag_type = NULL, query = NULL) {
     )
   }
 
+  # Return the parsed data as a tibble
   tibble::as_tibble(parsed)
 }
