@@ -1,6 +1,6 @@
 Package: refimpact
 Title: API Wrapper for the UK REF 2014 Impact Case Studies Database
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: person("Perry", "Stephenson",
     email = "perry.stephenson+cran@gmail.com",
     role = c("aut", "cre"))
@@ -25,4 +25,7 @@ Imports:
     jsonlite (>= 1.1),
     tibble (>= 1.2)
 RoxygenNote: 5.0.1
-Suggests: testthat
+Suggests: 
+    testthat,
+    knitr,
+    roxygen2
