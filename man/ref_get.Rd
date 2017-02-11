@@ -21,8 +21,8 @@ method. See example usage below.}
 Returns a \code{\link[tibble]{tibble}}.
 }
 \description{
-This function calls the REF Impact Case Studies API, and returns the data
-as R objects.
+This function calls the REF Impact Case Studies API, and returns the dataset
+as a tibble.
 }
 \details{
 Details about the API can be found at
@@ -43,6 +43,7 @@ institutions <- ref_get("ListInstitutions")
 units_of_assessment <- ref_get("ListUnitsOfAssessment")
 tag_types <- ref_get("ListTagTypes")
 tag_type_5 <- ref_get("ListTagValues", 5L)
+cases <- ref_get("SearchCaseStudies", query = list(ID = c(27121,1698)))
 
 }
 

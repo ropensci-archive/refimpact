@@ -1,7 +1,7 @@
 #' Call the REF Impact Case Studies API
 #'
-#' This function calls the REF Impact Case Studies API, and returns the data
-#' as R objects.
+#' This function calls the REF Impact Case Studies API, and returns the dataset
+#' as a tibble.
 #'
 #' Details about the API can be found at
 #' \url{http://impact.ref.ac.uk/CaseStudies/APIhelp.aspx}.
@@ -30,6 +30,7 @@
 #' units_of_assessment <- ref_get("ListUnitsOfAssessment")
 #' tag_types <- ref_get("ListTagTypes")
 #' tag_type_5 <- ref_get("ListTagValues", 5L)
+#' cases <- ref_get("SearchCaseStudies", query = list(ID = c(27121,1698)))
 #'
 #' @export
 ref_get <- function(api_method, tag_type = NULL, query = NULL) {
@@ -77,7 +78,10 @@ ref_get <- function(api_method, tag_type = NULL, query = NULL) {
 
   # Check that we got a JSON back
   if (httr::http_type(r) != "application/json") {
-    stop("ref_get: API did not return json.", call. = FALSE)
+    tmp <- xml2::read_xml(r)
+    stop("ref_get: API did not return json.\n",
+         "API returned the following text:\n",
+         xml2::xml_text(tmp), call. = FALSE)
   }
 
   # Parse the JSON response
