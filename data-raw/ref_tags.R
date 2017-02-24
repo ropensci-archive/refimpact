@@ -1,4 +1,4 @@
-# This script contains a script to generate the ref_tags dataset
+# This file contains a script to generate the ref_tags dataset
 
 tag_types <- ref_get("ListTagTypes")
 
