@@ -4,6 +4,7 @@ Version: 0.1.0.9000
 Authors@R: person("Perry", "Stephenson",
     email = "perry.stephenson+cran@gmail.com",
     role = c("aut", "cre"))
+Maintainer: Perry Stephenson <perry.stephenson+cran@gmail.com>
 Description: Provides wrapper functions around the UK Research
     Excellence Framework 2014 Impact Case Studies Database API
     <http://impact.ref.ac.uk/>. The database contains relevant publication and
