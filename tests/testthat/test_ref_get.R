@@ -7,11 +7,68 @@ test_that("non-valid API methods throw an error", {
   expect_error(ref_get("HelloWorld", query = list(UoA=1)))
 })
 
-# Test each API method fully
+test_that("ListInstituions API method returns tibble equal to reference", {
+  expect_equal_to_reference(ref_get("ListInstitutions"), "ListInstitutions.rds")
+})
 
-# Test that the XML error case does the right thing
+test_that("ListTagTypes API method returns tibble equal to reference", {
+  expect_equal_to_reference(ref_get("ListTagTypes"), "ListTagTypes.rds")
+})
 
-# Test that it returns a tibble
+test_that("ListTagValues API method returns tibble equal to reference", {
+  expect_equal_to_reference(ref_get("ListTagValues", 5), "ListTagValues.rds")
+})
 
-# Use dput or something to test a few queries to make sure results are staying
-# constant over time (no data change)
+test_that("ListUnitsOfAssessment API method returns tibble equal to reference",{
+  expect_equal_to_reference(ref_get("ListUnitsOfAssessment"), "ListUoA.rds")
+})
+
+test_that("SearchCaseStudies API method returns tibble equal to reference", {
+  expect_equal_to_reference(ref_get("SearchCaseStudies",
+                                    query = list(
+                                      UKPRN = 10007777
+                                    )), "SearchCaseStudies_1.rds")
+  expect_equal_to_reference(ref_get("SearchCaseStudies",
+                                    query = list(
+                                      UoA = 1
+                                    )), "SearchCaseStudies_2.rds")
+  expect_equal_to_reference(ref_get("SearchCaseStudies",
+                                    query = list(
+                                      tags = 11280
+                                    )), "SearchCaseStudies_3.rds")
+  expect_equal_to_reference(ref_get("SearchCaseStudies",
+                                    query = list(
+                                      tags = c(11280, 5085)
+                                    )), "SearchCaseStudies_4.rds")
+  expect_equal_to_reference(ref_get("SearchCaseStudies",
+                                    query = list(
+                                      phrase = "hello"
+                                    )), "SearchCaseStudies_5.rds")
+  expect_equal_to_reference(ref_get("SearchCaseStudies",
+                                    query = list(
+                                      phrase = "research AND experiment"
+                                    )), "SearchCaseStudies_6.rds")
+  expect_equal_to_reference(ref_get("SearchCaseStudies",
+                                    query = list(
+                                      ID = 15862
+                                    )), "SearchCaseStudies_7.rds")
+  expect_equal_to_reference(ref_get("SearchCaseStudies",
+                                    query = list(
+                                      ID = c(15862,42101)
+                                    )), "SearchCaseStudies_8.rds")
+})
+
+test_that("API error messages are provided to the user", {
+  expect_error(ref_get("SearchCaseStudies",
+                       query = list(phrase = "research experiment")),
+               "Exception of type 'System.OutOfMemoryException' was thrown.")
+})
+
+test_that("it returns a tibble", {
+  expect_is(ref_get("SearchCaseStudies", query = list(phrase="hello")),"tibble")
+  expect_is(ref_get("ListInstitutions"),"tibble")
+  expect_is(ref_get("ListTagTypes"),"tibble")
+  expect_is(ref_get("ListTagValues", 5),"tibble")
+  expect_is(ref_get("ListUnitsOfAssessment"),"tibble")
+})
+
