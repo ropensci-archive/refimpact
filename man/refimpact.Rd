@@ -15,6 +15,6 @@ licenced under a CC-BY 4.0 licence
 (\url{http://creativecommons.org/licenses/by/4.0/legalcode}).
 }
 \details{
-To get started, see \code{\link{get_case_studies}}
+To get started, see \code{\link{ref_get}}
 }
 

@@ -12,5 +12,6 @@ for (i in seq_along(tag_types$ID)) {
 ref_tags <- do.call("rbind", tag_values)
 
 devtools::use_data(ref_tags, overwrite = T)
+devtools::use_data(ref_tags, overwrite = T, internal = T)
 
 rm(tag_types, tag_values, ref_tags)
