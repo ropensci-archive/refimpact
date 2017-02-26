@@ -29,6 +29,8 @@ license can be found
 user-friendly version of the license can be be obtained 
 [here](https://creativecommons.org/licenses/by/4.0/).
 
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+
 ## Installation
 
 ### Install from CRAN

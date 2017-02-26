@@ -15,6 +15,8 @@ The data may be of interest to you if you are interested in:
 
 Case studies in the database are licenced under a CC-BY 4.0 license. The full license can be found [here](https://creativecommons.org/licenses/by/4.0/legalcode) and a more user-friendly version of the license can be be obtained [here](https://creativecommons.org/licenses/by/4.0/).
 
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+
 Installation
 ------------
 
