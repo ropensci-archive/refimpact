@@ -88,6 +88,8 @@ SearchCaseStudies_prepare <- function(query) {
       # Check if the tags are valid.
       # Casting to char and then to integer to make sure factors are handled.
       for (i in seq_along(query$tags)) {
+        ref_tags <-
+          readRDS(system.file("extdata", "ref_tags.rds", package="refimpact"))
         if(!(query$tags[i] %in% ref_tags$ID)) {
           stop("ref_get \nYour tags argument appears invalid. Please check:\n",
                "- Each tag is an integer, or something which can be cast to an integer\n",
