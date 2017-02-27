@@ -65,10 +65,10 @@ test_that("API error messages are provided to the user", {
 })
 
 test_that("it returns a tibble", {
-  expect_is(ref_get("SearchCaseStudies", query = list(phrase="hello")),"tibble")
-  expect_is(ref_get("ListInstitutions"),"tibble")
-  expect_is(ref_get("ListTagTypes"),"tibble")
-  expect_is(ref_get("ListTagValues", 5),"tibble")
-  expect_is(ref_get("ListUnitsOfAssessment"),"tibble")
+  expect_is(ref_get("SearchCaseStudies", query = list(ID = 15862)),"tbl_df")
+  expect_is(ref_get("ListInstitutions"),"tbl_df")
+  expect_is(ref_get("ListTagTypes"),"tbl_df")
+  expect_is(ref_get("ListTagValues", 5),"tbl_df")
+  expect_is(ref_get("ListUnitsOfAssessment"),"tbl_df")
 })
 

@@ -109,9 +109,9 @@ test_that("tags query modifier works", {
 })
 
 test_that("ID with other params gives warning but returns sensible ID", {
-  expect_equal(SearchCaseStudies_prepare(list(ID = c(1855, 1856, 2582),
-                                              tags = 5083)),
+  expect_equal(suppressWarnings(SearchCaseStudies_prepare(list(ID = c(1855, 1856, 2582),
+                                              tags = 5083))),
                list(ID = "1855,1856,2582"))
   expect_warning(SearchCaseStudies_prepare(list(ID = c(1855, 1856, 2582),
-                                                tags = 5083)), "ignored")
+                                                tags = 5083)), "*ignored*")
 })

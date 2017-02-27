@@ -57,7 +57,7 @@ SearchCaseStudies_prepare <- function(query) {
       stop("ref_get: The query argument must be a list with at least one query parameter.")
     }
 
-    if (!all(names(query) %in% valid_params)) {
+    if (!all(names(query) %in% valid_params) | is.null(names(query))) {
       stop("ref_get: You have used an invalid parameter.\n",
            "Valid parameters include `ID`, `UKPRN`, `UoA`, `tags` and `phrase`")
     }
@@ -66,7 +66,7 @@ SearchCaseStudies_prepare <- function(query) {
       valid_institutions <- ref_get("ListInstitutions")
       # Check if the UKPRN is valid.
       # Casting to char and then to integer to make sure factors are handled.
-      if(!(as.integer(as.character(query$UKPRN)) %in% valid_institutions$UKPRN)) {
+      if(!(query$UKPRN %in% valid_institutions$UKPRN)) {
         stop("ref_get \nYour UKPRN argument appears invalid. Please check:\n",
              "- UKPRN is an integer, or something which can be cast to an integer\n",
              "- UKPRN is one of the valid UKPRNs returned from ref_get('ListInstitutions')")
@@ -77,7 +77,7 @@ SearchCaseStudies_prepare <- function(query) {
       valid_uoa <- ref_get("ListUnitsOfAssessment")
       # Check if the UoA is valid.
       # Casting to char and then to integer to make sure factors are handled.
-      if(!(as.integer(as.character(query$UoA)) %in% valid_uoa$ID)) {
+      if(!(query$UoA %in% valid_uoa$ID)) {
         stop("ref_get \nYour UoA argument appears invalid. Please check:\n",
              "- UoA is an integer, or something which can be cast to an integer\n",
              "- UoA is one of the valid IDs returned from ref_get('ListUnitsOfAssessment')")
@@ -88,7 +88,7 @@ SearchCaseStudies_prepare <- function(query) {
       # Check if the tags are valid.
       # Casting to char and then to integer to make sure factors are handled.
       for (i in seq_along(query$tags)) {
-        if(!(as.integer(as.character(query$tags[i])) %in% ref_tags$ID)) {
+        if(!(query$tags[i] %in% ref_tags$ID)) {
           stop("ref_get \nYour tags argument appears invalid. Please check:\n",
                "- Each tag is an integer, or something which can be cast to an integer\n",
                "- Each tag is one of the valid IDs in the ref_tags table")
