@@ -11,6 +11,8 @@ for (i in seq_along(tag_types$ID)) {
 
 ref_tags <- do.call("rbind", tag_values)
 
+ref_tags <- iconv(ref_tags$Name, from = "UTF-8", to = "latin1")
+
 devtools::use_data(ref_tags, overwrite = T)
 saveRDS(ref_tags, "inst/extdata/ref_tags.rds")
 
