@@ -12,6 +12,6 @@ for (i in seq_along(tag_types$ID)) {
 ref_tags <- do.call("rbind", tag_values)
 
 devtools::use_data(ref_tags, overwrite = T)
-saveRDS(ref_tags, "inst/extdata/ref_tags.R")
+saveRDS(ref_tags, "inst/extdata/ref_tags.rds")
 
 rm(tag_types, tag_values, ref_tags)
