@@ -60,8 +60,7 @@ test_that("SearchCaseStudies API method returns tibble equal to reference", {
 
 test_that("API error messages are provided to the user", {
   expect_error(ref_get("SearchCaseStudies",
-                       query = list(phrase = "research experiment")),
-               "Exception of type 'System.OutOfMemoryException' was thrown.")
+                       query = list(phrase = "research experiment")))
 })
 
 test_that("it returns a tibble", {
