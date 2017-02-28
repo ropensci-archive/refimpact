@@ -38,6 +38,7 @@ Details about the API can be found at
   \item SearchCaseStudies
 }
 }
+
 \examples{
 institutions <- ref_get("ListInstitutions")
 units_of_assessment <- ref_get("ListUnitsOfAssessment")
@@ -46,4 +47,3 @@ tag_type_5 <- ref_get("ListTagValues", 5L)
 cases <- ref_get("SearchCaseStudies", query = list(ID = c(27121,1698)))
 
 }
-

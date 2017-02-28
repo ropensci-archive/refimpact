@@ -17,4 +17,3 @@ licenced under a CC-BY 4.0 licence
 \details{
 To get started, see \code{\link{ref_get}}
 }
-

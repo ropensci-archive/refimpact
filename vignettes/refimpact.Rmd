@@ -9,73 +9,140 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Let's skip the explanations and jump straight in! We'll be using the excellent 
-[tibble](https://github.com/hadley/tibble) package by Hadley Wickham to navigate
-the data_frame.
-
-```{r, eval=FALSE}
+```{r message=FALSE}
 library(refimpact)
-library(tibble)
-data <- get_case_studies(UoA = 3)
-glimpse(data)
-View(data) # This only works inside RStudio
 ```
 
-You will note that a lot of the metadata columns contain nested data structures;
-this is entirely intentional. Maintaining the nesting keeps the data within its
-intended context, and you can always separate it out later if you like. 
-Accessing the nested data is straight-forward using the standard tibble subset
-syntax: [[row, column]].
+# Worked Example
 
-```{r, eval=FALSE}
-data[[1, "Continent"]]
+# Detailed Walkthrough
+
+The core function for this package is `ref_get()`, which takes an API method as
+the first argument, and some optional arguments depending on the method.
+
+The API methods available are detailed below. 
+
+## SearchCaseStudies
+
+This is the core method of the API, and the most important for users of this
+package. The search method requires a compulsory argument to the `ref_get()`
+function: `query`. This arguments takes a list of query parameters, which can be
+as simple as a single Case Study ID, which returns a single record. A query
+returning a single record is shown below to demonstrate the syntax and the 
+returned data structure; more complex queries will be shown later in the 
+vignette.
+
+```{r}
+results <- ref_get("SearchCaseStudies", query=list(ID=941))
+print(results)
 ```
 
-Using the double `[` notation allows you to access the nested data as a
-data.frame object - essentially a data.frame within a data_frame. You can still
-use the double `[` syntax for accessing normal values, so it's a good habit to
-get into.
+You will note that the function returns a nested tibble - that is a tibble with
+other data frames inside it. This means that you can interrogate the tibble as
+per usual:
 
-```{r, eval=FALSE}
-cat(data[[1, "ImpactDetails"]])
+```{r}
+cat(results[[1, "CaseStudyId"]])
+cat(results[[1, "Title"]])
+cat(strtrim(results[[1, "ImpactSummary"]], width = 200), "<truncated>")
+cat(strtrim(results[[1, "ImpactDetails"]], width = 200), "<truncated>")
+cat(results[[1, "Institution"]])
 ```
 
-The API also provides fairly useful search functionality, and this is replicated
-in the refimpact package. You can search on any of the following:
+You can also interrogate the nested fields the same way, and even subset them:
 
-- UoA (Unit of Assessment)
-- UKPRN
-- tags
-- phrase (limited to a single word when using the refimpact package)
-
-Using these search methods (except phrase) requires a unique integer reference 
-as an argument - the code below shows some functions to find these references:
-
-```{r, eval=FALSE}
-units <- get_units_of_assessment()
-ukprn <- get_institutions()
-types <- get_tag_types()
-value <- get_tag_values(3) # Takes a tag type reference as an argument
+```{r}
+print(results[[1, "Country"]])
+print(results[[1, "Institutions"]])
+print(results[[1, "Institutions"]][,c("UKPRN", "InstitutionName")])
 ```
 
-You can use these as arguments to the `get_case_studies()` function to search
-for case studies meeting the criteria; multiple conditions are joined with 
-logical `AND`.
+> _In the opinion of the package author, the nested tibble offers many advantages 
+over other data representations - it is a relatively straight-forward exercise
+to transform the data into a set of wide or narrow tables if required._
 
-```{r, eval=FALSE}
-data <- get_case_studies(UoA = 5, UKPRN = 10007774)
+Returning a single case study based on the ID is obviously a niche use-case, so
+there are some other ways to search the database. But before getting to those, 
+it is worth pointing out that you can select multiple case studies in a single
+query:
+
+```{r}
+results <- ref_get("SearchCaseStudies", query=list(ID=c(941, 942, 1014)))
+print(results)
 ```
 
-You can use the same function to retrieve one or more case studies where you 
-already know the ID. This cannot be used in conjunction with other search 
-arguments.
+The ID parameter above is an exclusive parameter - if you provide one or more 
+IDs then the function will print a warning to the console, and remove all 
+parameters except for the IDs. This is based on the API's documented 
+limitations.
 
-```{r, eval=FALSE}
-ex1 <- get_case_studies(ID = 941)
-ex2 <- get_case_studies(ID = c(941, 942, 1014))
+The other parameters can all be combined for searching. Those parameters are:
+
+* **UKPRN** - This is a code referencing an institution, and comes from the 
+  ListInstitutions method below. Takes a single UKPRN.
+* **UoA** - This is a code referencing a Unit of Assessment, and comes from the
+  ListUnitsOfAssessment method below. Takes a single ID.
+* **tags** - This is one or more codes referencing tags from the ListTagValues 
+  method. The tags are separated into 13 different TagTypes, which are detailed
+  below. When multiple tags are provided to the search method, it will only 
+  return rows which contain both tags.
+* **phrase** - You can search the database using a text query. The query must
+  conform to Lucene search query syntax.
+  
+Some examples are shown below.
+
+```{r}
+results <- ref_get("SearchCaseStudies", query=list(UKPRN = 10007777))
+dim(results)
+results <- ref_get("SearchCaseStudies", query=list(UoA = 5))
+dim(results)
+results <- ref_get("SearchCaseStudies", query=list(tags = c(11280, 5085)))
+dim(results)
+results <- ref_get("SearchCaseStudies", query=list(phrase = "hello"))
+dim(results)
+results <- ref_get("SearchCaseStudies", query=list(UKPRN = 10007146,
+                                                   UoA   = 3))
+dim(results)
 ```
 
-There is currently no way to download all of the data from the API in a single
-API call. The most efficient way to collect all of the data is to iterate
-through the list of all Units of Assessment (from `get_units_of_assessment()`) 
-and calling `get_case_studies()` for each value.
+Unfortunately, the API method requires at least one search parameter, which 
+makes it more difficult to download the entire dataset. A short script for this
+purpose is included at the end of this vignette.
+
+## ListInstitutions
+
+This method lists all of the institutions which are included in the REF Impact
+Case Studies database, and the UKPRN column in the resuling tibble can be used
+as a query parameter
+
+```{r}
+institutions <- ref_get("ListInstitutions")
+print(institutions)
+```
+
+## ListTagTypes and ListTagValues
+
+These methods provide tags which can be used as search parameters in the 
+SearchCaseStudies method. The ListTagTypes method returns the types of tags 
+available:
+
+```{r}
+tag_types <- ref_get("ListTagTypes")
+print(tag_types)
+```
+
+These tag types can then be used as an argument to the ListTagValues method, to
+get all tags for each type:
+
+```{r}
+tag_values_5 <- ref_get("ListTagValues", 5)
+print(tag_values_5)
+```
+
+This can take some time to iterate through, so the full table is bundled with 
+this package. You can access it via `ref_tags`:
+
+```{r}
+print(ref_tags)
+```
+

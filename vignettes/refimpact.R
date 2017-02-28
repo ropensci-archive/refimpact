@@ -1,26 +1,51 @@
-## ---- eval=FALSE---------------------------------------------------------
-#  library(refimpact)
-#  library(tibble)
-#  data <- get_case_studies(UoA = 3)
-#  glimpse(data)
-#  View(data) # This only works inside RStudio
+## ----message=FALSE-------------------------------------------------------
+library(refimpact)
 
-## ---- eval=FALSE---------------------------------------------------------
-#  data[[1, "Continent"]]
+## ------------------------------------------------------------------------
+results <- ref_get("SearchCaseStudies", query=list(ID=941))
+print(results)
 
-## ---- eval=FALSE---------------------------------------------------------
-#  cat(data[[1, "ImpactDetails"]])
+## ------------------------------------------------------------------------
+cat(results[[1, "CaseStudyId"]])
+cat(results[[1, "Title"]])
+cat(strtrim(results[[1, "ImpactSummary"]], width = 200), "<truncated>")
+cat(strtrim(results[[1, "ImpactDetails"]], width = 200), "<truncated>")
+cat(results[[1, "Institution"]])
 
-## ---- eval=FALSE---------------------------------------------------------
-#  units <- get_units_of_assessment()
-#  ukprn <- get_institutions()
-#  types <- get_tag_types()
-#  value <- get_tag_values(3) # Takes a tag type reference as an argument
+## ------------------------------------------------------------------------
+print(results[[1, "Country"]])
+print(results[[1, "Institutions"]])
+print(results[[1, "Institutions"]][,c("UKPRN", "InstitutionName")])
 
-## ---- eval=FALSE---------------------------------------------------------
-#  data <- get_case_studies(UoA = 5, UKPRN = 10007774)
+## ------------------------------------------------------------------------
+results <- ref_get("SearchCaseStudies", query=list(ID=c(941, 942, 1014)))
+print(results)
 
-## ---- eval=FALSE---------------------------------------------------------
-#  ex1 <- get_case_studies(ID = 941)
-#  ex2 <- get_case_studies(ID = c(941, 942, 1014))
+## ------------------------------------------------------------------------
+results <- ref_get("SearchCaseStudies", query=list(UKPRN = 10007777))
+dim(results)
+results <- ref_get("SearchCaseStudies", query=list(UoA = 5))
+dim(results)
+results <- ref_get("SearchCaseStudies", query=list(tags = c(11280, 5085)))
+dim(results)
+results <- ref_get("SearchCaseStudies", query=list(phrase = "hello"))
+dim(results)
+results <- ref_get("SearchCaseStudies", query=list(UKPRN = 10007146,
+                                                   UoA   = 3))
+dim(results)
+
+## ------------------------------------------------------------------------
+institutions <- ref_get("ListInstitutions")
+print(institutions)
+
+## ------------------------------------------------------------------------
+tag_types <- ref_get("ListTagTypes")
+print(tag_types)
+
+## ------------------------------------------------------------------------
+tag_values_5 <- ref_get("ListTagValues", 5)
+print(tag_values_5)
+
+## ------------------------------------------------------------------------
+print(ref_tags)
 

@@ -22,4 +22,3 @@ This table contains the complete set of REF Impact Case Study tags, saving
 the user the effort of iteratively querying the API for each tag type.
 }
 \keyword{datasets}
-
