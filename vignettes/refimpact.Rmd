@@ -4,7 +4,7 @@ author: "Perry Stephenson"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{"refimpact"}
+  %\VignetteIndexEntry{refimpact}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
