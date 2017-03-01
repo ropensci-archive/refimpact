@@ -9,7 +9,7 @@ ref_get(api_method, tag_type = NULL, query = NULL)
 \arguments{
 \item{api_method}{text, the API method you wish to call. Valid methods
 are summarised below, and documented on the REF Impact Case Studies website
-linked above.}
+linked above, as well as in the vignette.}
 
 \item{tag_type}{integer, for ListTagValues method only. This is the ID of the
 tag type you wish to retrieve. See example usage below.}
@@ -18,11 +18,14 @@ tag type you wish to retrieve. See example usage below.}
 method. See example usage below.}
 }
 \value{
-Returns a \code{\link[tibble]{tibble}}.
+Returns a \code{\link[tibble]{tibble}} with nested data frames. To
+  access the nested data frames, subset the tibble using the [[]] syntax. For
+  more information, see the vignette.
 }
 \description{
 This function calls the REF Impact Case Studies API, and returns the dataset
-as a tibble.
+as a tibble. See the vignette for more details about how to use this
+function.
 }
 \details{
 Details about the API can be found at

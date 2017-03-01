@@ -1,14 +1,15 @@
 #' Call the REF Impact Case Studies API
 #'
 #' This function calls the REF Impact Case Studies API, and returns the dataset
-#' as a tibble.
+#' as a tibble. See the vignette for more details about how to use this
+#' function.
 #'
 #' Details about the API can be found at
 #' \url{http://impact.ref.ac.uk/CaseStudies/APIhelp.aspx}.
 #'
 #' @param api_method text, the API method you wish to call. Valid methods
 #'   are summarised below, and documented on the REF Impact Case Studies website
-#'   linked above.
+#'   linked above, as well as in the vignette.
 #' @param tag_type integer, for ListTagValues method only. This is the ID of the
 #' tag type you wish to retrieve. See example usage below.
 #' @param query list, search parameters for use with the SearchCaseStudies
@@ -23,7 +24,9 @@
 #'   \item SearchCaseStudies
 #' }
 #'
-#' @return Returns a \code{\link[tibble]{tibble}}.
+#' @return Returns a \code{\link[tibble]{tibble}} with nested data frames. To
+#'   access the nested data frames, subset the tibble using the [[]] syntax. For
+#'   more information, see the vignette.
 #'
 #' @examples
 #' institutions <- ref_get("ListInstitutions")
