@@ -13,20 +13,36 @@ vignette: >
 library(refimpact)
 ```
 
-# Worked Example
+## Introduction
 
-# Detailed Walkthrough
+This package is an API wrapper around the REF Impact Case Studies database API. 
+Chances are that if you're looking at this package, you already know what this
+dataset is, and you probably know roughly what you're looking for. 
+
+If you have stumbled upon this package however, and you want to know more about
+the dataset, you can head [here](http://impact.ref.ac.uk) to find out more. If
+you are thinking of using this dataset as a toy dataset for learning, then you 
+might find this dataset useful for text mining, amongst other things.
+
+## Core functions
 
 The core function for this package is `ref_get()`, which takes an API method as
 the first argument, and some optional arguments depending on the method.
 
-The API methods available are detailed below. 
+The API methods available are detailed below, but presented here for quick 
+reference:
+
+* SearchCaseStudies
+* ListUnitsOfAssessment
+* ListTagTypes
+* ListTagValues
+* ListInstitutions
 
 ## SearchCaseStudies
 
 This is the core method of the API, and the most important for users of this
 package. The search method requires a compulsory argument to the `ref_get()`
-function: `query`. This arguments takes a list of query parameters, which can be
+function: `query`. This argument takes a list of query parameters, which can be
 as simple as a single Case Study ID, which returns a single record. A query
 returning a single record is shown below to demonstrate the syntax and the 
 returned data structure; more complex queries will be shown later in the 
@@ -57,9 +73,9 @@ print(results[[1, "Institutions"]])
 print(results[[1, "Institutions"]][,c("UKPRN", "InstitutionName")])
 ```
 
-> _In the opinion of the package author, the nested tibble offers many advantages 
-over other data representations - it is a relatively straight-forward exercise
-to transform the data into a set of wide or narrow tables if required._
+> _In the opinion of the package author, the nested tibble offers many
+advantages over other data representations - it is a relatively straight-forward
+exercise to transform the data into a set of wide or narrow tables if required._
 
 Returning a single case study based on the ID is obviously a niche use-case, so
 there are some other ways to search the database. But before getting to those, 
@@ -109,6 +125,10 @@ Unfortunately, the API method requires at least one search parameter, which
 makes it more difficult to download the entire dataset. A short script for this
 purpose is included at the end of this vignette.
 
+Useful values for the UKPRN, UoA and tags parameters can be found by querying 
+the other 4 API methods - the phrase parameter is the only parameter which can 
+be used in isolation. Each of the 4 other API methods are outlined below.
+
 ## ListInstitutions
 
 This method lists all of the institutions which are included in the REF Impact
@@ -135,7 +155,7 @@ These tag types can then be used as an argument to the ListTagValues method, to
 get all tags for each type:
 
 ```{r}
-tag_values_5 <- ref_get("ListTagValues", 5)
+tag_values_5 <- ref_get("ListTagValues", tag_type = 5)
 print(tag_values_5)
 ```
 
@@ -146,3 +166,33 @@ this package. You can access it via `ref_tags`:
 print(ref_tags)
 ```
 
+## ListUnitsOfAssessment
+
+This method lists all of the units of assessment which the Impact
+Case Studies can be assessed against. The tibble also includes an ID column
+which can be used when querying the SearchCaseStudies method.
+
+```{r}
+UoAs <- ref_get("ListUnitsOfAssessment")
+print(UoAs)
+```
+
+## Extracting the entire dataset
+
+As alluded to above, the API cannot be searched without parameters, which means
+that downloading the entire dataset is not a simple task. The code below
+can be used to extract all records from the database.
+
+```{r, eval = F}
+uoa_table <- ref_get("ListUnitsOfAssessment")
+uoa_list <- uoa_table$ID
+
+ref_corpus <- vector(length = length(uoa_list), mode = "list")
+
+for (i in seq_along(uoa_list)) {
+  message("Retrieving data for UoA ", uoa_list[i])
+  ref_corpus[[i]] <- ref_get("SearchCaseStudies", query = list(UoA = uoa_list[i]))
+}
+
+output <- do.call(rbind, ref_corpus)
+```

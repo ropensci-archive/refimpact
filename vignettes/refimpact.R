@@ -43,9 +43,26 @@ tag_types <- ref_get("ListTagTypes")
 print(tag_types)
 
 ## ------------------------------------------------------------------------
-tag_values_5 <- ref_get("ListTagValues", 5)
+tag_values_5 <- ref_get("ListTagValues", tag_type = 5)
 print(tag_values_5)
 
 ## ------------------------------------------------------------------------
 print(ref_tags)
+
+## ------------------------------------------------------------------------
+UoAs <- ref_get("ListUnitsOfAssessment")
+print(UoAs)
+
+## ---- eval = F-----------------------------------------------------------
+#  uoa_table <- ref_get("ListUnitsOfAssessment")
+#  uoa_list <- uoa_table$ID
+#  
+#  ref_corpus <- vector(length = length(uoa_list), mode = "list")
+#  
+#  for (i in seq_along(uoa_list)) {
+#    message("Retrieving data for UoA ", uoa_list[i])
+#    ref_corpus[[i]] <- ref_get("SearchCaseStudies", query = list(UoA = uoa_list[i]))
+#  }
+#  
+#  output <- do.call(rbind, ref_corpus)
 
