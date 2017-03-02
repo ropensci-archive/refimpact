@@ -1,30 +1,35 @@
 library(refimpact)
 context("Testing Input Validation for ListTagValues and tag_type")
 
-test_that("api_method values other than ListTagValues give an error if tag_value is provided", {
+test_that("api_method values other than ListTagValues give an error if tag_value
+          is provided", {
   expect_error(ListTagValues_validate("ListInstitutions", 5))
   expect_error(ListTagValues_validate("ListTagTypes", 5))
   expect_error(ListTagValues_validate("ListUnitsOfAssessment", 5))
   expect_error(ListTagValues_validate("SearchCaseStudies", 5))
 })
 
-test_that("api_method values other than ListTagValues give no error if tag_value is NULL", {
+test_that("api_method values other than ListTagValues give no error if tag_value
+          is NULL", {
   expect_silent(ListTagValues_validate("ListInstitutions", NULL))
   expect_silent(ListTagValues_validate("ListTagTypes", NULL))
   expect_silent(ListTagValues_validate("ListUnitsOfAssessment", NULL))
   expect_silent(ListTagValues_validate("SearchCaseStudies", NULL))
 })
 
-test_that("api_method value of ListTagValues gives no error if tag_value is provided", {
+test_that("api_method value of ListTagValues gives no error if tag_value is
+          provided", {
   expect_silent(ListTagValues_validate("ListTagValues", 5))
 })
 
-test_that("api_method value of ListTagValues gives an error if tag_value is NULL", {
+test_that("api_method value of ListTagValues gives an error if tag_value is
+          NULL", {
   expect_error(ListTagValues_validate("ListTagValues", NULL))
 })
 
 test_that("useful error if unseen tag_value is provided to ListTagValues", {
-  expect_error(ListTagValues_validate("ListTagValues", 2), "*tag_type is one of the valid IDs returned from ref_get('ListTagTypes')*")
+  expect_error(ListTagValues_validate("ListTagValues", 2), "*tag_type is one of
+               the valid IDs returned from ref_get('ListTagTypes')*")
 })
 
 context("Testing validation for SearchCaseStudies")
@@ -53,7 +58,8 @@ test_that("list elements with unacceptable names throw an error", {
   expect_error(SearchCaseStudies_prepare(list(UKPRN=1, hello=1)))
 })
 
-test_that("list elements with acceptable names and parameters throw no error or warning", {
+test_that("list elements with acceptable names and parameters throw no error or
+          warning", {
   # a few random tests
   expect_silent(SearchCaseStudies_prepare(list(ID=1)))
   expect_silent(SearchCaseStudies_prepare(list(ID=c(1:10))))
@@ -109,7 +115,9 @@ test_that("tags query modifier works", {
 })
 
 test_that("ID with other params gives warning but returns sensible ID", {
-  expect_equal(suppressWarnings(SearchCaseStudies_prepare(list(ID = c(1855, 1856, 2582),
+  expect_equal(suppressWarnings(SearchCaseStudies_prepare(list(ID = c(1855,
+                                                                      1856,
+                                                                      2582),
                                               tags = 5083))),
                list(ID = "1855,1856,2582"))
   expect_warning(SearchCaseStudies_prepare(list(ID = c(1855, 1856, 2582),

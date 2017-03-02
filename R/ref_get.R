@@ -48,7 +48,8 @@ ref_get <- function(api_method, tag_type = NULL, query = NULL) {
                         "ListTagValues",
                         "ListUnitsOfAssessment",
                         "SearchCaseStudies"))) {
-    stop("ref_get: api_method is not a recognised method for this API. See `?ref_get` for valid API methods.")
+    stop("ref_get: api_method is not a recognised method for this API.\n",
+         "See `?ref_get` for valid API methods.")
   }
 
   # The ListTagValues method requires tag_type to be appended to the end of the
@@ -63,7 +64,8 @@ ref_get <- function(api_method, tag_type = NULL, query = NULL) {
     query <- SearchCaseStudies_prepare(query)
   } else {
     if (!checkmate::test_null(query)) {
-      stop("ref_get: The query argument should only be used with the SearchCaseStudy method.")
+      stop("ref_get: The query argument should only be used with the",
+           " SearchCaseStudy method.")
     }
   }
 
