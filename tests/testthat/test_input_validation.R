@@ -28,8 +28,7 @@ test_that("api_method value of ListTagValues gives an error if tag_value is
 })
 
 test_that("useful error if unseen tag_value is provided to ListTagValues", {
-  expect_error(ListTagValues_validate("ListTagValues", 2), "*tag_type is one of
-               the valid IDs returned from ref_get('ListTagTypes')*")
+  expect_error(ListTagValues_validate("ListTagValues", 2), "*tag_type*")
 })
 
 context("Testing validation for SearchCaseStudies")
