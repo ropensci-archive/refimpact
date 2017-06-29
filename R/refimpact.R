@@ -8,7 +8,8 @@
 #' licenced under a CC-BY 4.0 licence
 #' (\url{http://creativecommons.org/licenses/by/4.0/legalcode}).
 #'
-#' To get started, see \code{\link{ref_get}}
+#' To get started, see \code{\link{ref_get}} and read the vignette using
+#' \code{vignette('refimpact')}.
 #'
 #' @docType package
 #' @name refimpact
