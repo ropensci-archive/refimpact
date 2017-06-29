@@ -3,7 +3,8 @@
 * Major breaking changes. There is now a single user-facing function `ref_get()`
   which takes the API method as an argument. This standardises a lot of the 
   input validation and error handling, as well as reducing the risk of bugs (as 
-  there are less lines of code).
+  there are less lines of code). Functions from previous version of the package
+  are still available, but deprecated.
 * A vignette has been added, and the help documentation has been improved.
 * The package now uses **httr** when calling the API, which improves reliability
   and provides much better error messages to the end-user when things go wrong.
