@@ -3,7 +3,7 @@
 refimpact
 =========
 
-[![Build Status](https://travis-ci.org/perrystephenson/refimpact.svg?branch=master)](https://travis-ci.org/perrystephenson/refimpact) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/perrystephenson/refimpact?branch=master&svg=true)](https://ci.appveyor.com/project/perrystephenson/refimpact) [![codecov](https://codecov.io/gh/perrystephenson/refimpact/branch/master/graph/badge.svg)](https://codecov.io/gh/perrystephenson/refimpact) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/refimpact)](https://CRAN.R-project.org/package=refimpact) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/refimpact)](http://cran.rstudio.com/web/packages/refimpact/index.html)
+[![Build Status](https://travis-ci.org/ropensci/refimpact.svg?branch=master)](https://travis-ci.org/ropensci/refimpact) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/dhg4rs9s3f3n1wj6/branch/master?svg=true)](https://ci.appveyor.com/project/perrystephenson/refimpact-vc6tf/branch/master) [![codecov](https://codecov.io/gh/ropensci/refimpact/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/refimpact) [![](https://ropensci.org/badges/78_status.svg)](https://github.com/ropensci/onboarding/issues/78) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/refimpact)](https://CRAN.R-project.org/package=refimpact) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/refimpact)](http://cran.rstudio.com/web/packages/refimpact/index.html)
 
 **refimpact** provides an API wrapper for the UK Research Excellence Framework 2014 Impact Case Studies Database. You can find more information about this database at <http://impact.ref.ac.uk/CaseStudies/>.
 
@@ -48,3 +48,5 @@ More Information
 For more information about a specific function you can use the help commands (for example `?ref_get`).
 
 To raise bug reports and issues, please use the issue tracker in Github.
+
+[![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
