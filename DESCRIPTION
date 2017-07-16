@@ -13,8 +13,8 @@ Description: Provides wrapper functions around the UK Research
     licenced under a CC-BY 4.0 licence
     <http://creativecommons.org/licenses/by/4.0/legalcode>.
 License: MIT + file LICENSE
-URL: https://github.com/perrystephenson/refimpact
-BugReports: https://github.com/perrystephenson/refimpact/issues
+URL: https://github.com/ropensci/refimpact
+BugReports: https://github.com/ropensci/refimpact/issues
 Encoding: UTF-8
 LazyData: true
 Depends:
