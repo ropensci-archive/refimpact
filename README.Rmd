@@ -11,7 +11,6 @@ output: github_document
 [![codecov](https://codecov.io/gh/ropensci/refimpact/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/refimpact)
 [![](https://ropensci.org/badges/78_status.svg)](https://github.com/ropensci/onboarding/issues/78)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/refimpact)](https://CRAN.R-project.org/package=refimpact)
-[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/refimpact)](http://cran.rstudio.com/web/packages/refimpact/index.html)
 
 **refimpact** provides an API wrapper for the UK Research Excellence Framework
 2014 Impact Case Studies Database. You can find more information about this
