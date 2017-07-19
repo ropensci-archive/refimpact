@@ -51,6 +51,7 @@
 #'   more information, see the vignette.
 #'
 #' @examples
+#' \donttest{
 #' institutions <- ref_get("ListInstitutions")
 #' units_of_assessment <- ref_get("ListUnitsOfAssessment")
 #' tag_types <- ref_get("ListTagTypes")
@@ -61,6 +62,7 @@
 #' ref_get("SearchCaseStudies", query = list(tags   = c(11280, 5085)))
 #' ref_get("SearchCaseStudies", query = list(phrase = "hello"))
 #' ref_get("SearchCaseStudies", query = list(UKPRN  = 10007146, UoA = 3))
+#' }
 #'
 #' @export
 ref_get <- function(api_method, tag_type = NULL, query = NULL) {

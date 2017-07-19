@@ -67,6 +67,7 @@ For more information about how to use these parameters, see the vignette.
 }
 
 \examples{
+\donttest{
 institutions <- ref_get("ListInstitutions")
 units_of_assessment <- ref_get("ListUnitsOfAssessment")
 tag_types <- ref_get("ListTagTypes")
@@ -77,5 +78,6 @@ ref_get("SearchCaseStudies", query = list(UoA    = 5))
 ref_get("SearchCaseStudies", query = list(tags   = c(11280, 5085)))
 ref_get("SearchCaseStudies", query = list(phrase = "hello"))
 ref_get("SearchCaseStudies", query = list(UKPRN  = 10007146, UoA = 3))
+}
 
 }

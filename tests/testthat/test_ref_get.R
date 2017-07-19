@@ -8,22 +8,27 @@ test_that("non-valid API methods throw an error", {
 })
 
 test_that("ListInstituions API method returns tibble equal to reference", {
+  skip_on_cran()
   expect_equal_to_reference(ref_get("ListInstitutions"), "ListInstitutions.rds")
 })
 
 test_that("ListTagTypes API method returns tibble equal to reference", {
+  skip_on_cran()
   expect_equal_to_reference(ref_get("ListTagTypes"), "ListTagTypes.rds")
 })
 
 test_that("ListTagValues API method returns tibble equal to reference", {
+  skip_on_cran()
   expect_equal_to_reference(ref_get("ListTagValues", 5), "ListTagValues.rds")
 })
 
 test_that("ListUnitsOfAssessment API method returns tibble equal to reference",{
+  skip_on_cran()
   expect_equal_to_reference(ref_get("ListUnitsOfAssessment"), "ListUoA.rds")
 })
 
 test_that("SearchCaseStudies API method returns tibble equal to reference", {
+  skip_on_cran()
   expect_equal_to_reference(ref_get("SearchCaseStudies",
                                     query = list(
                                       UKPRN = 10007777
@@ -59,11 +64,13 @@ test_that("SearchCaseStudies API method returns tibble equal to reference", {
 })
 
 test_that("API error messages are provided to the user", {
+  skip_on_cran()
   expect_error(ref_get("SearchCaseStudies",
                        query = list(phrase = "research experiment")))
 })
 
 test_that("it returns a tibble", {
+  skip_on_cran()
   expect_is(ref_get("SearchCaseStudies", query = list(ID = 15862)),"tbl_df")
   expect_is(ref_get("ListInstitutions"),"tbl_df")
   expect_is(ref_get("ListTagTypes"),"tbl_df")
