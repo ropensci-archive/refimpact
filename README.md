@@ -3,7 +3,7 @@
 refimpact
 =========
 
-[![Build Status](https://travis-ci.org/ropensci/refimpact.svg?branch=master)](https://travis-ci.org/ropensci/refimpact) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/dhg4rs9s3f3n1wj6/branch/master?svg=true)](https://ci.appveyor.com/project/perrystephenson/refimpact-vc6tf/branch/master) [![codecov](https://codecov.io/gh/ropensci/refimpact/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/refimpact) [![](https://ropensci.org/badges/78_status.svg)](https://github.com/ropensci/onboarding/issues/78) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/refimpact)](https://CRAN.R-project.org/package=refimpact)
+[![Build Status](https://travis-ci.org/ropensci/refimpact.svg?branch=master)](https://travis-ci.org/ropensci/refimpact) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/dhg4rs9s3f3n1wj6/branch/master?svg=true)](https://ci.appveyor.com/project/perrystephenson/refimpact-vc6tf/branch/master) [![codecov](https://codecov.io/gh/ropensci/refimpact/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/refimpact) [![](https://badges.ropensci.org/78_status.svg)](https://github.com/ropensci/onboarding/issues/78) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/refimpact)](https://CRAN.R-project.org/package=refimpact)
 
 **refimpact** provides an API wrapper for the UK Research Excellence Framework 2014 Impact Case Studies Database. You can find more information about this database at <http://impact.ref.ac.uk/CaseStudies/>.
 
