@@ -70,7 +70,7 @@ You can also interrogate the nested fields the same way, and even subset them:
 ```{r}
 print(results[[1, "Country"]])
 print(results[[1, "Institutions"]])
-print(results[[1, "Institutions"]][,c("UKPRN", "InstitutionName")])
+print(results[[1, "Institutions"]][[1]][,c("UKPRN", "InstitutionName")])
 ```
 
 > _In the opinion of the package author, the nested tibble offers many
