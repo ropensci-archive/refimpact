@@ -3,6 +3,7 @@
 refimpact
 =========
 
+[![Project Status: Abandoned – Initial development has started, but there has not yet been a stable, usable release; the project has been abandoned and the author(s) do not intend on continuing development.](https://www.repostatus.org/badges/latest/abandoned.svg)](https://www.repostatus.org/#abandoned)
 [![Build Status](https://travis-ci.org/ropensci/refimpact.svg?branch=master)](https://travis-ci.org/ropensci/refimpact) 
 [![Build status](https://ci.appveyor.com/api/projects/status/jxj1yela4a6ym6wb/branch/master?svg=true)](https://ci.appveyor.com/project/perrystephenson/refimpact/branch/master) 
 [![codecov](https://codecov.io/gh/ropensci/refimpact/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/refimpact) 
